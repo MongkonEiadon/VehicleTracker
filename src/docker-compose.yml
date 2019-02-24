@@ -1,18 +1,29 @@
 version: '3.4'
 
 services:
-  vehicle:
-    image: ${DOCKER_REGISTRY-}vehicle
-    build:
-      context: .
-      dockerfile: Vehicle/Dockerfile
 
-
-        
   database_sql:
-    image: microsoft/mssql-server-windows-express:latest
+    image: microsoft/mssql-server-linux:latest
     environment:
-    - sa_password=Pass@word
+    - MSSQL_SA_PASSWORD=Pass@word
     - ACCEPT_EULA=Y
+    - MSSQL_PID=Express
     ports:
     - 5553:1433
+
+  eventstore:
+    image: ${DOCKER_REGISTRY-}eventstoremiddleware
+    build:
+      context: .
+      dockerfile: EventStore.Middleware/Dockerfile    
+    depends_on:
+    - database_sql
+  
+  distributed_cache:
+    image: redis
+    ports:
+    - 5551:6739
+
+
+    
+

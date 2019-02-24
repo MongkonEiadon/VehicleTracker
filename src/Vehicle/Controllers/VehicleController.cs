@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EventFlow;
-using EventFlow.Queries;
 using Microsoft.AspNetCore.Mvc;
-using Vehicle.ReadStore;
 using Vehicle7Tracker.Domain.Application.QueryServices;
 using Vehicle7Tracker.Domain.Business.VehicleDomain;
 
@@ -23,11 +18,24 @@ namespace Vehicle.Controllers
             _vehicleQueryService = vehicleQueryService;
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> GetVehicle(string id, CancellationToken cancellationToken)
         {
-            var result = await _vehicleQueryService.GetVehicleByIdAsync(VehicleId.With(id), cancellationToken);
+            if (string.IsNullOrEmpty(id))
+                return BadRequest(nameof(NullReferenceException));
+
+
+            var result = await _vehicleQueryService.GetVehicleByIdAsync(VehicleId.With(Guid.Parse(id)), cancellationToken);
             return new JsonResult(result);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> StoreVehicle(string id, CancellationToken cancellationToken)
+        {
+
+
+            return Ok();
         }
     }
 }

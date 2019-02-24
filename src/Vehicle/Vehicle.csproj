@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="eventflow" Version="0.69.3772" />
+    <PackageReference Include="EventFlow.AspNetCore" Version="0.69.3772" />
+    <PackageReference Include="EventFlow.DependencyInjection" Version="0.69.3772" />
+    <PackageReference Include="EventFlow.EntityFramework" Version="0.69.3772" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />

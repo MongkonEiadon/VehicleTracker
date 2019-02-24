@@ -1,12 +1,13 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using EventFlow.Queries;
 using Vehicle7Tracker.Domain.Application.QueryServices;
 using Vehicle7Tracker.Domain.Business.VehicleDomain;
 
-using VehicleDomain = Vehicle7Tracker.Domain.Business.VehicleDomain.Vehicle;
-
-namespace Vehicle.ReadStore
+namespace Vehicle.ReadStore.Services
 {
 
     public class VehicleQueryService : IVehicleQueryService
@@ -19,7 +20,7 @@ namespace Vehicle.ReadStore
         }
 
 
-        public async Task<VehicleDomain> GetVehicleByIdAsync(VehicleId id, CancellationToken ctx)
+        public async Task<Vehicle7Tracker.Domain.Business.VehicleDomain.Vehicle> GetVehicleByIdAsync(VehicleId id, CancellationToken ctx)
         {
             var result = await _queryProcessor.ProcessAsync(new ReadModelByIdQuery<VehicleReadModel>(id), ctx);
 

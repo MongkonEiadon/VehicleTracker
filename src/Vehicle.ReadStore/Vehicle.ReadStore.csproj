@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventStore\EventStore.csproj" />
     <ProjectReference Include="..\Vehicle7Tracker.Domain\Vehicle7Tracker.Domain.csproj" />
   </ItemGroup>
 

@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventFlow;
+using EventFlow.AspNetCore.Extensions;
+using EventFlow.DependencyInjection.Extensions;
+using EventFlow.Extensions;
+using EventStore.Module;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +15,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Vehicle.ReadStore;
+using Vehicle.ReadStore.Module;
+using Vehicle7Tracker.Domain.Infrastructure;
 
 namespace Vehicle
 {
@@ -23,14 +31,32 @@ namespace Vehicle
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            return EventFlowOptions.New
+                .UseServiceCollection(services)
+                .AddAspNetCoreMetadataProviders()
+                .UseConsoleLog()
+                .AddDefaults(typeof(VehicleReadModel).Assembly)
+                .RegisterModule<VehicleReadStoreModule>()
+                .RegisterModule<EventSourcingModule>()
+                .CreateServiceProvider();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+        {            
+            // initialize InfoDbContext
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                //var efentflow = scope.ServiceProvider.GetService<EventFlow.ReadStores.IReadModel>();
+                var dbContext = scope.ServiceProvider.GetService<VehicleContext>();
+                dbContext?.Database?.EnsureCreated();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

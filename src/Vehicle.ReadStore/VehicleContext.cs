@@ -9,6 +9,12 @@ namespace Vehicle.ReadStore
         public VehicleContext(DbContextOptions<VehicleContext> dbContextOptions)
             :base(dbContextOptions)
         {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .UseSqlServer("User ID=sa;Password=Pass@word;server=localhost,5553;Database=Vehicle;Pooling=true;");
 
         }
     }

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EventFlow.Aggregates;
 using EventFlow.ReadStores;
 using Vehicle7Tracker.Domain.Business.VehicleDomain;
-
+using Vehicle7Tracker.Domain.Business.VehicleDomain.Events;
 using VehicleDomain = Vehicle7Tracker.Domain.Business.VehicleDomain.Vehicle;
 
 namespace Vehicle.ReadStore
 {
-    public class VehicleReadModel : IReadModel
+    public class VehicleReadModel : IReadModel,
+        IAmReadModelFor<VehicleAggregate, VehicleId, CreateVehicleEvent>
     {
         [Key] [Column("VehicleId")]
         public virtual string AggregateId { get; set; }
@@ -26,5 +28,10 @@ namespace Vehicle.ReadStore
             };
         }
 
+        public void Apply(IReadModelContext context, 
+            IDomainEvent<VehicleAggregate, VehicleId, CreateVehicleEvent> domainEvent)
+        {
+
+        }
     }
 }
