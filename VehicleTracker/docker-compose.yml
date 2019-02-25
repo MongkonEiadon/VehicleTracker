@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  customer:
+    image: customer
+    build:
+      context: .
+      dockerfile: Customer\Dockerfile
+    environment:
+      - ConnectionString=Server=database_sql;Database=Services.OrderingDb;User Id=sa;Password=your@password
+
+
+  database_sql:
+    image: microsoft/mssql-server-windows-express:latest
+    environment:
+    - sa_password=Pass@word
+    - ACCEPT_EULA=Y
+    ports:
+    - 5553:1433

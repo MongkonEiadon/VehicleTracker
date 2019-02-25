@@ -1,6 +1,15 @@
 version: '3.4'
 
 services:
+  eventstore:
+    image: eventstore
+    build:
+      context: .
+      dockerfile: EventStore.Middleware/Dockerfile
+    environment:
+    - db_connection=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
+    depends_on:
+    - database_sql
 
   database_sql:
     image: microsoft/mssql-server-linux:latest
@@ -10,20 +19,3 @@ services:
     - MSSQL_PID=Express
     ports:
     - 5553:1433
-
-  eventstore:
-    image: ${DOCKER_REGISTRY-}eventstoremiddleware
-    build:
-      context: .
-      dockerfile: EventStore.Middleware/Dockerfile    
-    depends_on:
-    - database_sql
-  
-  distributed_cache:
-    image: redis
-    ports:
-    - 5551:6739
-
-
-    
-
