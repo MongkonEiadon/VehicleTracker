@@ -21,4 +21,4 @@ variables:
 steps : 
 - script: dotnet build src/VehicleTracker.sln --configuration $(buildConfiguration)
 - script: dotnet test  src/VehicleTracker.sln --configuration $(buildConfiguration) --logger trx
-- script: dotnet publish --configuration $(buildConfiguration) --output out
+- script: dotnet publish src/VehicleTracker.sln --configuration $(buildConfiguration) --output out
