@@ -44,7 +44,7 @@ namespace Vehicle.Service
                 { nameof(ServiceConfiguration.DbConnection), _configuration.GetValue<string>(Identifiers.DbConnection) }
             });
             services.AddSingleton(middlewareConfig)
-                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Vehicle API", Version = "v1"}));
+                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "VehicleModel API", Version = "v1"}));
 
             return EventFlowOptions.New
                 .UseServiceCollection(services)
@@ -74,7 +74,7 @@ namespace Vehicle.Service
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Vehicle API V1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "VehicleModel API V1");
                 });
                 app.UseMvc();
             }

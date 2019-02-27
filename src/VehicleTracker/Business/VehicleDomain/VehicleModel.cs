@@ -5,9 +5,9 @@ using EventFlow.Entities;
 
 namespace VehicleTracker.Business.VehicleDomain
 {
-    public class Vehicle : Entity<VehicleId>
+    public class VehicleModel : Entity<VehicleId>
     {
-        public Vehicle(VehicleId id) : base(id)
+        public VehicleModel(VehicleId id) : base(id)
         {
         }
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Vehicle.Service.ViewModels;
 using VehicleTracker.Application.QueryServices;
 using VehicleTracker.Business.VehicleDomain;
 
@@ -12,10 +14,12 @@ namespace Vehicle.Controllers
     public class VehicleController : Controller
     {
         private readonly IVehicleQueryService _vehicleQueryService;
+        private readonly IMapper _mapper;
 
-        public VehicleController(IVehicleQueryService vehicleQueryService)
+        public VehicleController(IVehicleQueryService vehicleQueryService, IMapper mapper)
         {
             _vehicleQueryService = vehicleQueryService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -31,8 +35,9 @@ namespace Vehicle.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> StoreVehicle(VehicleTracker.Business.VehicleDomain.Vehicle vehicle, CancellationToken cancellationToken)
+        public async Task<IActionResult> StoreVehicle(VehicleViewModel vehicle, CancellationToken cancellationToken)
         {
+
 
             return Ok();
         }

@@ -16,6 +16,6 @@ namespace VehicleTracker.Business.CustomerDomain
         public string Email { get; set; }
         public DateTime? BirthDate { get; set; }
         public string Country { get; set; }
-        public virtual HashSet<Vehicle> Vehicles { get; set; }
+        public virtual HashSet<VehicleModel> Vehicles { get; set; }
     }
 }

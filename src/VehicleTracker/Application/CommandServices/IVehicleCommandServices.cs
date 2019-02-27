@@ -11,7 +11,7 @@ namespace VehicleTracker.Application.CommandServices
 {
     public interface IVehicleCommandServices
     {
-        Task CreateNewVehicleAsync(Vehicle vehicleModel, CancellationToken ctx);
+        Task CreateNewVehicleAsync(VehicleModel vehicleModelModel, CancellationToken ctx);
     }
 
 }

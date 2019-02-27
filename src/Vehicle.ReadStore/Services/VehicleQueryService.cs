@@ -7,7 +7,7 @@ using EventFlow.Queries;
 using VehicleTracker.Application.QueryServices;
 using VehicleTracker.Business.VehicleDomain;
 
-namespace Vehicle.ReadStore.Services
+namespace global::VehicleTracker.Business.VehicleDomain.VehicleModel.ReadStore.Services
 {
 
     public class VehicleQueryService : IVehicleQueryService
@@ -20,7 +20,7 @@ namespace Vehicle.ReadStore.Services
         }
 
 
-        public async Task<VehicleTracker.Business.VehicleDomain.Vehicle> GetVehicleByIdAsync(VehicleId id, CancellationToken ctx)
+        public async Task<VehicleTracker.Business.VehicleDomain.VehicleModel> GetVehicleByIdAsync(VehicleId id, CancellationToken ctx)
         {
             var result = await _queryProcessor.ProcessAsync(new ReadModelByIdQuery<VehicleReadModel>(id), ctx);
 

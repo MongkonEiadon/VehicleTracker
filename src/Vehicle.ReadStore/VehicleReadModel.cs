@@ -5,9 +5,8 @@ using EventFlow.Aggregates;
 using EventFlow.ReadStores;
 using VehicleTracker.Business.VehicleDomain;
 using VehicleTracker.Business.VehicleDomain.Events;
-using VehicleDomain = VehicleTracker.Business.VehicleDomain.Vehicle;
 
-namespace Vehicle.ReadStore
+namespace global::VehicleTracker.Business.VehicleDomain.VehicleModel.ReadStore
 {
     public class VehicleReadModel : IReadModel,
         IAmReadModelFor<VehicleAggregate, VehicleId, CreateVehicleEvent>
@@ -18,9 +17,9 @@ namespace Vehicle.ReadStore
         public virtual string Model { get; set; }
         public virtual string Country { get; set; }
 
-        public VehicleDomain ToVehicle()
+        public VehicleModel ToVehicle()
         {
-            return new VehicleDomain(VehicleId.With(AggregateId))
+            return new VehicleModel(VehicleId.With(AggregateId))
             {
                 Country = Country,
                 LicensePlateNumber = LicensePlateNumber,
