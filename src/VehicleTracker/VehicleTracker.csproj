@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="eventflow" Version="0.69.3772" />
+    <PackageReference Include="eventflow.entityframework" Version="0.69.3772" />
   </ItemGroup>
 
 </Project>

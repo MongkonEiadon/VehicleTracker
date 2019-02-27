@@ -19,7 +19,7 @@ services:
     image: vehicle
     build:
       context: .
-      dockerfile: Vehicle/Dockerfile
+      dockerfile: Vehicle.Service/Dockerfile
     environment:
     - ASPNETCORE_ENVIRONMENT=Development
     - es_connection=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word

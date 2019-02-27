@@ -18,10 +18,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Vehicle.ReadStore;
-using Vehicle.ReadStore.Module;
 using VehicleTracker.Infrastructure;
 
-namespace Vehicle
+namespace Vehicle.Service
 {
     public class Startup
     {
@@ -52,7 +51,7 @@ namespace Vehicle
                 .AddAspNetCoreMetadataProviders()
                 .UseConsoleLog()
                 .AddDefaults(typeof(VehicleReadModel).Assembly)
-                .RegisterModule<VehicleReadStoreModule>()
+                .RegisterModule<Vehicle.ReadStore.Module.VehicleReadStoreModule>()
                 .RegisterModule<EventSourcingModule>()
                 .CreateServiceProvider();
 
@@ -65,7 +64,7 @@ namespace Vehicle
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 //var efentflow = scope.ServiceProvider.GetService<EventFlow.ReadStores.IReadModel>();
-                var dbContext = scope.ServiceProvider.GetService<IDbContextProvider<VehicleContext>>();
+                var dbContext = scope.ServiceProvider.GetService<IDbContextProvider<Vehicle.ReadStore.VehicleContext>>();
                 dbContext.CreateContext();
             }
 

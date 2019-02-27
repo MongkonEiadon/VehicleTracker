@@ -31,7 +31,7 @@ namespace Vehicle.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> StoreVehicle(string id, CancellationToken cancellationToken)
+        public async Task<IActionResult> StoreVehicle(VehicleTracker.Business.VehicleDomain.Vehicle vehicle, CancellationToken cancellationToken)
         {
 
             return Ok();
