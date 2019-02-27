@@ -1,9 +1,0 @@
-version: '3.4'
-
-services:
-  ci-build:
-    image: microsoft/aspnetcore-build:2.0
-    volumes:
-      - .:/src
-    working_dir: /src
-    command: /bin/bash -c "dotnet restore ./vehicle-tracking-poc.sln && dotnet publish ./vehicle-tracking-poc.sln -c Release -o ./obj/Docker/publish"

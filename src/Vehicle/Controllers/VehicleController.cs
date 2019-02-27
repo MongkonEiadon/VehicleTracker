@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Vehicle7Tracker.Domain.Application.QueryServices;
-using Vehicle7Tracker.Domain.Business.VehicleDomain;
+using VehicleTracker.Application.QueryServices;
+using VehicleTracker.Business.VehicleDomain;
 
 namespace Vehicle.Controllers
 {

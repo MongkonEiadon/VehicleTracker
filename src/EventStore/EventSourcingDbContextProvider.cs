@@ -1,6 +1,7 @@
 ﻿using System;
 using EventFlow.EntityFramework;
 using Microsoft.EntityFrameworkCore;
+using VehicleTracker.Infrastructure;
 
 namespace EventStore
 {
@@ -8,11 +9,11 @@ namespace EventStore
     {
         private readonly DbContextOptions<EventSourcingDbContext> _options;
 
-        public EventSourcingDbContextProvider()
+        public EventSourcingDbContextProvider(MiddlewareConfiguration configuration)
         {
 
             _options = new DbContextOptionsBuilder<EventSourcingDbContext>()
-                .UseSqlServer("User ID=sa;Password=Pass@word;server=database_sql;Database=EventStore;Pooling=true;")
+                .UseSqlServer(configuration.EventDbConnection)
                 .Options;
         }
 

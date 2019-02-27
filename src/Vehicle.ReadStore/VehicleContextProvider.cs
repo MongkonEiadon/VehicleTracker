@@ -1,15 +1,16 @@
 ﻿using EventFlow.EntityFramework;
 using Microsoft.EntityFrameworkCore;
+using VehicleTracker.Infrastructure;
 
 namespace Vehicle.ReadStore
 {
     public class VehicleContextProvider : IDbContextProvider<VehicleContext>
     {
         private readonly DbContextOptions<VehicleContext> _options;
-        public VehicleContextProvider()
+        public VehicleContextProvider(ServiceConfiguration configuration)
         {
             _options = new DbContextOptionsBuilder<VehicleContext>()
-                .UseSqlServer("User ID=sa;Password=Pass@word;server=localhost,5553;Database=Vehicle;Pooling=true;")
+                .UseSqlServer(configuration.DbConnection)
                 .Options;
         }
 

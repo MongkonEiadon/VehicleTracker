@@ -4,8 +4,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using EventFlow.Queries;
-using Vehicle7Tracker.Domain.Application.QueryServices;
-using Vehicle7Tracker.Domain.Business.VehicleDomain;
+using VehicleTracker.Application.QueryServices;
+using VehicleTracker.Business.VehicleDomain;
 
 namespace Vehicle.ReadStore.Services
 {
@@ -20,7 +20,7 @@ namespace Vehicle.ReadStore.Services
         }
 
 
-        public async Task<Vehicle7Tracker.Domain.Business.VehicleDomain.Vehicle> GetVehicleByIdAsync(VehicleId id, CancellationToken ctx)
+        public async Task<VehicleTracker.Business.VehicleDomain.Vehicle> GetVehicleByIdAsync(VehicleId id, CancellationToken ctx)
         {
             var result = await _queryProcessor.ProcessAsync(new ReadModelByIdQuery<VehicleReadModel>(id), ctx);
 

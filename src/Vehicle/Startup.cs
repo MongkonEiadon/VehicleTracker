@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EventFlow;
 using EventFlow.AspNetCore.Extensions;
 using EventFlow.DependencyInjection.Extensions;
+using EventFlow.EntityFramework;
 using EventFlow.Extensions;
 using EventStore.Module;
 using Microsoft.AspNetCore.Builder;
@@ -15,27 +16,36 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 using Vehicle.ReadStore;
 using Vehicle.ReadStore.Module;
-using Vehicle7Tracker.Domain.Infrastructure;
+using VehicleTracker.Infrastructure;
 
 namespace Vehicle
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-                
+
+            var middlewareConfig = new ServiceConfiguration().Create(new Dictionary<string, string>()
+            {
+                { nameof(ServiceConfiguration.EventDbConnection), _configuration.GetValue<string>(Identifiers.EventDbConnection) },
+                { nameof(ServiceConfiguration.DbConnection), _configuration.GetValue<string>(Identifiers.DbConnection) }
+            });
+            services.AddSingleton(middlewareConfig)
+                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Vehicle API", Version = "v1"}));
 
             return EventFlowOptions.New
                 .UseServiceCollection(services)
@@ -55,15 +65,19 @@ namespace Vehicle
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 //var efentflow = scope.ServiceProvider.GetService<EventFlow.ReadStores.IReadModel>();
-                var dbContext = scope.ServiceProvider.GetService<VehicleContext>();
-                dbContext?.Database?.EnsureCreated();
+                var dbContext = scope.ServiceProvider.GetService<IDbContextProvider<VehicleContext>>();
+                dbContext.CreateContext();
             }
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger", "Vehicle API v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Vehicle API V1");
+                });
+                app.UseMvc();
             }
             else
             {

@@ -4,7 +4,7 @@ using EventFlow.EntityFramework;
 using EventFlow.EntityFramework.Extensions;
 using EventFlow.Extensions;
 using Vehicle.ReadStore.Services;
-using Vehicle7Tracker.Domain.Application.QueryServices;
+using VehicleTracker.Application.QueryServices;
 
 namespace Vehicle.ReadStore.Module
 {

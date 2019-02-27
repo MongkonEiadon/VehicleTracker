@@ -4,7 +4,7 @@ WORKDIR /app
 FROM microsoft/dotnet:2.2-sdk-stretch AS build
 WORKDIR /src
 COPY ["EventStore.Middleware/EventStore.Middleware.csproj", "EventStore.Middleware/"]
-COPY ["Vehicle7Tracker.Domain/Vehicle7Tracker.Domain.csproj", "Vehicle7Tracker.Domain/"]
+COPY ["VehicleTracker/VehicleTracker.csproj", "VehicleTracker/"]
 COPY ["EventStore/EventStore.csproj", "EventStore/"]
 RUN dotnet restore "EventStore.Middleware/EventStore.Middleware.csproj"
 COPY . .

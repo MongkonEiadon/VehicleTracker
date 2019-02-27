@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>4226d9cc-71eb-4c8e-8691-f897829e38e8</UserSecretsId>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
@@ -15,12 +15,14 @@
     <PackageReference Include="EventFlow.EntityFramework" Version="0.69.3772" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventStore\EventStore.csproj" />
     <ProjectReference Include="..\Vehicle.ReadStore\Vehicle.ReadStore.csproj" />
-    <ProjectReference Include="..\Vehicle7Tracker.Domain\Vehicle7Tracker.Domain.csproj" />
+    <ProjectReference Include="..\VehicleTracker\VehicleTracker.csproj" />
   </ItemGroup>
 
 </Project>

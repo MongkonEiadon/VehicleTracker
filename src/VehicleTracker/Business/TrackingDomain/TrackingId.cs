@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using EventFlow.Core;
 
-namespace Vehicle7Tracker.Domain.Business.TrackingDomain
+namespace VehicleTracker.Business.TrackingDomain
 {
     public class TrackingId : Identity<TrackingId>
     {

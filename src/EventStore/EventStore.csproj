@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vehicle7Tracker.Domain\Vehicle7Tracker.Domain.csproj" />
+    <ProjectReference Include="..\VehicleTracker\VehicleTracker.csproj" />
   </ItemGroup>
 
 </Project>

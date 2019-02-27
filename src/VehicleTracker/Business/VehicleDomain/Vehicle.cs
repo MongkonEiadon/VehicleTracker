@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using EventFlow.Entities;
 
-namespace Vehicle7Tracker.Domain.Business.VehicleDomain
+namespace VehicleTracker.Business.VehicleDomain
 {
     public class Vehicle : Entity<VehicleId>
     {

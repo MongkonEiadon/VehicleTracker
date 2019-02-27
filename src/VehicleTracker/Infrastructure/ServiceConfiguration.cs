@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Vehicle7Tracker.Domain.Infrastructure
+namespace VehicleTracker.Infrastructure
 {
     public sealed class ServiceConfiguration : MiddlewareConfiguration
     {

@@ -6,13 +6,10 @@ using EventFlow.EntityFramework;
 using EventStore.Module;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Vehicle7Tracker.Domain.Infrastructure;
+using VehicleTracker.Infrastructure;
 
 namespace EventStore.Middleware
 {
@@ -29,8 +26,13 @@ namespace EventStore.Middleware
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            var middlewareConfig = new ServiceConfiguration().Create(new Dictionary<string, string>()
+            {
+                { nameof(ServiceConfiguration.EventDbConnection), _configuration.GetValue<string>(Identifiers.EventDbConnection) }
+            });
+
             return EventFlowOptions.New
-                .UseServiceCollection(services)
+                .UseServiceCollection(services.AddSingleton(middlewareConfig))
                 .RegisterModule<EventSourcingModule>()
                 .CreateServiceProvider();
         }

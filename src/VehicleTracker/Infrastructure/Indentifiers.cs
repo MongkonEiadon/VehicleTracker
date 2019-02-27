@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Vehicle7Tracker.Domain.Infrastructure
+namespace VehicleTracker.Infrastructure
 {
     public sealed class Identifiers
     {
@@ -9,6 +9,7 @@ namespace Vehicle7Tracker.Domain.Infrastructure
         public const string TrackingServiceName = "tracking";
         public const string CustomerServiceName = "customer";
 
-        public const string EventDbConnection = "event_db_connection";
+        public const string EventDbConnection = "es_connection";
+        public const string DbConnection = "db_connection";
     }
 }

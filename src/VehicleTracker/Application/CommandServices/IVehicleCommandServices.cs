@@ -4,10 +4,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using EventFlow.Queries;
-using Vehicle7Tracker.Domain.Application.QueryServices;
-using Vehicle7Tracker.Domain.Business.VehicleDomain;
+using VehicleTracker.Application.QueryServices;
+using VehicleTracker.Business.VehicleDomain;
 
-namespace Vehicle7Tracker.Domain.Application.CommandServices
+namespace VehicleTracker.Application.CommandServices
 {
     public interface IVehicleCommandServices
     {

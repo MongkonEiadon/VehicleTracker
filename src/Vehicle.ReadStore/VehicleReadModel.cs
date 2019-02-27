@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using EventFlow.Aggregates;
 using EventFlow.ReadStores;
-using Vehicle7Tracker.Domain.Business.VehicleDomain;
-using Vehicle7Tracker.Domain.Business.VehicleDomain.Events;
-using VehicleDomain = Vehicle7Tracker.Domain.Business.VehicleDomain.Vehicle;
+using VehicleTracker.Business.VehicleDomain;
+using VehicleTracker.Business.VehicleDomain.Events;
+using VehicleDomain = VehicleTracker.Business.VehicleDomain.Vehicle;
 
 namespace Vehicle.ReadStore
 {

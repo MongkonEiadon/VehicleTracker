@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using EventFlow.Entities;
-using Vehicle7Tracker.Domain.Business.VehicleDomain;
+using VehicleTracker.Business.VehicleDomain;
 
-namespace Vehicle7Tracker.Domain.Business.CustomerDomain
+namespace VehicleTracker.Business.CustomerDomain
 {
     public class Customer : Entity<CustomerId>
     {

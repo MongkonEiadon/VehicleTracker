@@ -1,6 +1,6 @@
 ﻿using EventFlow.Core;
 
-namespace Vehicle7Tracker.Domain.Business.CustomerDomain
+namespace VehicleTracker.Business.CustomerDomain
 {
     public class CustomerId : Identity<CustomerId>
     {

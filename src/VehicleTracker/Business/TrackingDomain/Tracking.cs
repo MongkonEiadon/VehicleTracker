@@ -1,6 +1,6 @@
 ﻿using EventFlow.Entities;
 
-namespace Vehicle7Tracker.Domain.Business.TrackingDomain
+namespace VehicleTracker.Business.TrackingDomain
 {
     public class Tracking : Entity<TrackingId>
     {
