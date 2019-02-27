@@ -7,7 +7,7 @@ using EventFlow.Queries;
 using VehicleTracker.Application.QueryServices;
 using VehicleTracker.Business.VehicleDomain;
 
-namespace global::VehicleTracker.Business.VehicleDomain.VehicleModel.ReadStore.Services
+namespace Vehicle.ReadStore.Services
 {
 
     public class VehicleQueryService : IVehicleQueryService

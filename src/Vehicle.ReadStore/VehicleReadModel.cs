@@ -6,7 +6,7 @@ using EventFlow.ReadStores;
 using VehicleTracker.Business.VehicleDomain;
 using VehicleTracker.Business.VehicleDomain.Events;
 
-namespace global::VehicleTracker.Business.VehicleDomain.VehicleModel.ReadStore
+namespace Vehicle.ReadStore
 {
     public class VehicleReadModel : IReadModel,
         IAmReadModelFor<VehicleAggregate, VehicleId, CreateVehicleEvent>

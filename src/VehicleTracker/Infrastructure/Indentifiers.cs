@@ -9,7 +9,7 @@ namespace VehicleTracker.Infrastructure
         public const string TrackingServiceName = "tracking";
         public const string CustomerServiceName = "customer";
 
-        public const string EventDbConnection = "es_connection";
-        public const string DbConnection = "db_connection";
+        public const string EventDbConnection = "ES_CONNECTION";
+        public const string DbConnection = "DB_CONNECTION";
     }
 }
