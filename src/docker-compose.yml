@@ -7,10 +7,11 @@ services:
       context: .
       dockerfile: EventStore.Middleware/Dockerfile
     environment:
-    - es_connection=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
     - ASPNETCORE_ENVIRONMENT=Development
+    - es_connection=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
     depends_on:
     - database_sql
+    - distributed_cache
     ports:
     - 32770:80
 
@@ -20,12 +21,13 @@ services:
       context: .
       dockerfile: Vehicle/Dockerfile
     environment:
+    - ASPNETCORE_ENVIRONMENT=Development
     - es_connection=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
     - db_connection=Server=database_sql;Database=vehicle;User Id=sa;Password=Pass@word
-    - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
     - database_sql  
     - eventstore
+    - distributed_cache
     ports:
     - 32772:80
 
@@ -37,3 +39,8 @@ services:
     - MSSQL_PID=Express
     ports:
     - 5553:1433
+
+  distributed_cache:
+    image: redis
+    ports:
+    - 5551:6739
