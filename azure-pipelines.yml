@@ -11,7 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  imageName: 'VehicleTracker:$(Build.BuildId)'
+  imageName: 'vehicletracker:$(Build.BuildId)'
 
 steps:
 - script: docker build -f src/EventStore.Middleware/Dockerfile -t $(imageName) .
