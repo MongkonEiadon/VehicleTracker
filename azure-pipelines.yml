@@ -18,7 +18,7 @@ variables:
 # - script: docker build -f src/Vehicle.Service/Dockerfile -t $(imageName) .
 #   displayName: 'docker build'
 
-- script: |
+- script: 
     dotnet build src/VehicleTracker.sln --configuration $(buildConfiguration)
     dotnet test  src/VehicleTracker.sln --configuration $(buildConfiguration) --logger trx
     dotnet publish --configuration $(buildConfiguration) --output out
