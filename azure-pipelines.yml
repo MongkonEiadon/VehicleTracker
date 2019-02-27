@@ -13,7 +13,12 @@ variables:
   buildConfiguration: 'Release'
   imageName: 'vehicletracker:$(Build.BuildId)'
 
-steps:
-- script: docker build -f src/EventStore.Middleware/Dockerfile -t $(imageName) .
-- script: docker build -f src/Vehicle.Service/Dockerfile -t $(imageName) .
-  displayName: 'docker build'
+# steps:
+# - script: docker build -f src/EventStore.Middleware/Dockerfile -t $(imageName) .
+# - script: docker build -f src/Vehicle.Service/Dockerfile -t $(imageName) .
+#   displayName: 'docker build'
+
+- script: |
+    dotnet build src/VehicleTracker.sln --configuration $(buildConfiguration)
+    dotnet test  src/VehicleTracker.sln --configuration $(buildConfiguration) --logger trx
+    dotnet publish --configuration $(buildConfiguration) --output out
