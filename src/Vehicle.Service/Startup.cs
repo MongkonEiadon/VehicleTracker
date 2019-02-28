@@ -6,7 +6,6 @@ using AutoMapper;
 using EventFlow;
 using EventFlow.AspNetCore.Extensions;
 using EventFlow.DependencyInjection.Extensions;
-using EventFlow.EntityFramework;
 using EventFlow.Extensions;
 
 using EventStore.Module;
@@ -19,7 +18,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Swashbuckle.AspNetCore.Swagger;
 
-using Vehicle.ReadStore;
 using Vehicle.ReadStore.Module;
 
 using VehicleTracker.Infrastructure;
@@ -33,7 +31,6 @@ namespace Vehicle.Service {
             _configuration = configuration;
         }
 
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services) {
             services.AddMvc()
@@ -41,22 +38,18 @@ namespace Vehicle.Service {
 
             services.AddAutoMapper();
 
-
             var middlewareConfig = new ServiceConfiguration().Create(new Dictionary<string, string> {
-                {
-                    nameof(ServiceConfiguration.EventDbConnection),
-                    _configuration.GetValue<string>(Identifiers.EventDbConnection)
-                },
+                {nameof(ServiceConfiguration.EventDbConnection), _configuration.GetValue<string>(Identifiers.EventDbConnection)},
                 {nameof(ServiceConfiguration.DbConnection), _configuration.GetValue<string>(Identifiers.DbConnection)}
             });
+
             services.AddSingleton(middlewareConfig)
-                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "VehicleEntity API", Version = "v1"}));
+                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Vehicle API", Version = "v1"}));
 
             return EventFlowOptions.New
                 .UseServiceCollection(services)
                 .AddAspNetCoreMetadataProviders()
                 .UseConsoleLog()
-                .AddDefaults(typeof(VehicleReadModel).Assembly)
                 .RegisterModule<DomainModule>()
                 .RegisterModule<VehicleReadStoreModule>()
                 .RegisterModule<EventSourcingModule>()
@@ -65,13 +58,7 @@ namespace Vehicle.Service {
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
-            // initialize InfoDbContext
-            using (var scope = app.ApplicationServices.CreateScope()) {
-                //var efentflow = scope.ServiceProvider.GetService<EventFlow.ReadStores.IReadModel>();
-                var dbContext = scope.ServiceProvider.GetService<IDbContextProvider<VehicleContext>>();
-                dbContext.CreateContext();
-            }
-
+            
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
