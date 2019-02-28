@@ -9,6 +9,7 @@ using Vehicle.ReadStore.Services;
 using VehicleTracker.Application;
 using VehicleTracker.Application.CommandServices;
 using VehicleTracker.Application.QueryServices;
+using VehicleTracker.Infrastructure;
 
 namespace Vehicle.ReadStore.Module {
     public class VehicleReadStoreModule : IModule {

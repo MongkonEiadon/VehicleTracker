@@ -25,7 +25,6 @@ namespace Vehicle.ReadStore {
             LicensePlateNumber = _vehicle.LicensePlateNumber;
             Model = _vehicle.Model;
             Country = _vehicle.Country;
-
         }
 
         public VehicleEntity ToVehicle() {

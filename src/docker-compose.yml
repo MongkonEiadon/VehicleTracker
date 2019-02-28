@@ -33,6 +33,11 @@ services:
     ports:
     - 32772:80
 
+  distributed_cache:
+    image: redis
+    ports:
+    - 5551:6739
+
   database_sql:
     image: microsoft/mssql-server-linux:latest
     environment:
