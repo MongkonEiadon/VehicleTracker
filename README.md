@@ -12,3 +12,7 @@ $ cd src
 $ docker-compose up
 
 ```
+## Milestones
+- [x] Get/Delete/Create a Vehicle
+- [ ] A Sample for AggregateSaga
+- [ ] A Sample for SnapshotStore
