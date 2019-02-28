@@ -18,6 +18,14 @@ namespace Vehicle.ReadStore {
 
         public void Apply(IReadModelContext context,
             IDomainEvent<VehicleAggregate, VehicleId, CreateVehicleEvent> domainEvent) {
+
+            var _vehicle = domainEvent.AggregateEvent.Vehicle;
+
+            AggregateId = domainEvent.AggregateIdentity.ToString();
+            LicensePlateNumber = _vehicle.LicensePlateNumber;
+            Model = _vehicle.Model;
+            Country = _vehicle.Country;
+
         }
 
         public VehicleEntity ToVehicle() {

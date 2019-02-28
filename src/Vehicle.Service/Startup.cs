@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using AutoMapper;
+
 using EventFlow;
 using EventFlow.AspNetCore.Extensions;
 using EventFlow.DependencyInjection.Extensions;
@@ -21,6 +23,7 @@ using Vehicle.ReadStore;
 using Vehicle.ReadStore.Module;
 
 using VehicleTracker.Infrastructure;
+using VehicleTracker.Module;
 
 namespace Vehicle.Service {
     public class Startup {
@@ -35,6 +38,9 @@ namespace Vehicle.Service {
         public IServiceProvider ConfigureServices(IServiceCollection services) {
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddAutoMapper();
+
 
             var middlewareConfig = new ServiceConfiguration().Create(new Dictionary<string, string> {
                 {
@@ -51,6 +57,7 @@ namespace Vehicle.Service {
                 .AddAspNetCoreMetadataProviders()
                 .UseConsoleLog()
                 .AddDefaults(typeof(VehicleReadModel).Assembly)
+                .RegisterModule<DomainModule>()
                 .RegisterModule<VehicleReadStoreModule>()
                 .RegisterModule<EventSourcingModule>()
                 .CreateServiceProvider();

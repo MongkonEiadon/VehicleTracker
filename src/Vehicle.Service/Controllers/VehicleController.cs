@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Vehicle.Service.ViewModels;
 
+using VehicleTracker.Application.CommandServices;
 using VehicleTracker.Application.QueryServices;
 using VehicleTracker.Business.VehicleDomain;
 
@@ -17,9 +18,11 @@ namespace Vehicle.Service.Controllers {
     public class VehiclesController : Controller {
         private readonly IMapper _mapper;
         private readonly IVehicleQueryService _vehicleQueryService;
+        private readonly IVehicleCommandService _vehicleCommandService;
 
-        public VehiclesController(IVehicleQueryService vehicleQueryService, IMapper mapper) {
+        public VehiclesController(IVehicleQueryService vehicleQueryService, IVehicleCommandService vehicleCommandService, IMapper mapper) {
             _vehicleQueryService = vehicleQueryService;
+            _vehicleCommandService = vehicleCommandService;
             _mapper = mapper;
         }
 
@@ -40,6 +43,7 @@ namespace Vehicle.Service.Controllers {
             CancellationToken cancellationToken) {
             var vehicle = _mapper.Map<VehicleEntity>(vehicleViewModel);
 
+            await _vehicleCommandService.CreateNewVehicleAsync(vehicle, cancellationToken);
 
             return Ok();
         }

@@ -5,6 +5,7 @@ using EventFlow;
 
 using VehicleTracker.Application.CommandServices;
 using VehicleTracker.Business.VehicleDomain;
+using VehicleTracker.Business.VehicleDomain.Commands;
 
 namespace Vehicle.ReadStore.Services {
     public class VehicleCommandService : IVehicleCommandService {
@@ -13,8 +14,9 @@ namespace Vehicle.ReadStore.Services {
             _commandBus = commandBus;
         }
 
-        public Task CreateNewVehicleAsync(VehicleEntity vehicleEntity, CancellationToken ctx) {
-            throw new System.NotImplementedException();
+        public async Task CreateNewVehicleAsync(VehicleEntity vehicleEntity, CancellationToken ctx) {
+
+            await _commandBus.PublishAsync(new RegisterVehicleCommand(vehicleEntity), ctx);
         }
     }
 }

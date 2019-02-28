@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="automapper" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="eventflow" Version="0.69.3772" />
     <PackageReference Include="EventFlow.AspNetCore" Version="0.69.3772" />
     <PackageReference Include="EventFlow.DependencyInjection" Version="0.69.3772" />

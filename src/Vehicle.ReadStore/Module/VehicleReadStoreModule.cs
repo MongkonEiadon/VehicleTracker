@@ -7,6 +7,7 @@ using EventFlow.Extensions;
 using Vehicle.ReadStore.Services;
 
 using VehicleTracker.Application;
+using VehicleTracker.Application.CommandServices;
 using VehicleTracker.Application.QueryServices;
 
 namespace Vehicle.ReadStore.Module {
@@ -18,6 +19,7 @@ namespace Vehicle.ReadStore.Module {
                 .UseEntityFrameworkEventStore<VehicleContext>()
                 .UseEntityFrameworkReadModel<VehicleReadModel, VehicleContext>()
                 .RegisterServices(s => {
+                    s.Register<IVehicleCommandService, VehicleCommandService>();
                     s.Register<IVehicleQueryService, VehicleQueryService>();
                     s.Register<ISearchableReadModelStore<VehicleReadModel>,
                         EfSearchableReadStore<VehicleReadModel, VehicleContext>>();
