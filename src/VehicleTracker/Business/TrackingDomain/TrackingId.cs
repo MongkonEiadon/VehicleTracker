@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EventFlow.Core;
+﻿using EventFlow.Core;
 
-namespace VehicleTracker.Business.TrackingDomain
-{
-    public class TrackingId : Identity<TrackingId>
-    {
-        public TrackingId(string value) : base(value)
-        {
+namespace VehicleTracker.Business.TrackingDomain {
+    public class TrackingId : Identity<TrackingId> {
+        public TrackingId(string value) : base(value) {
         }
     }
 }

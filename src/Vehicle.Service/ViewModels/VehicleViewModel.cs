@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Vehicle.Service.ViewModels
-{
-    public class VehicleViewModel
-    {
+﻿namespace Vehicle.Service.ViewModels {
+    public class VehicleViewModel {
+        public string Id { get; set; }
+        public string LicensePlateNumber { get; set; }
+        public string Model { get; set; }
+        public string Country { get; set; }
     }
 }
