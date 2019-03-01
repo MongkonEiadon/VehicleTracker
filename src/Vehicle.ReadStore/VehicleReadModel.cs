@@ -9,15 +9,15 @@ using VehicleTracker.Business.VehicleDomain.Events;
 
 namespace Vehicle.ReadStore {
     public class VehicleReadModel : IReadModel,
-        IAmReadModelFor<VehicleAggregate, VehicleId, CreateVehicleEvent> {
-        [Key] [Column("VehicleId")] public virtual string AggregateId { get; set; }
+        IAmReadModelFor<VehicleAggregate, VehicleId, VehicleCreatedEvent> {
+        [Key] [Column("Id")] public virtual string AggregateId { get; set; }
 
         public virtual string LicensePlateNumber { get; set; }
         public virtual string Model { get; set; }
         public virtual string Country { get; set; }
 
         public void Apply(IReadModelContext context,
-            IDomainEvent<VehicleAggregate, VehicleId, CreateVehicleEvent> domainEvent) {
+            IDomainEvent<VehicleAggregate, VehicleId, VehicleCreatedEvent> domainEvent) {
 
             var _vehicle = domainEvent.AggregateEvent.Vehicle;
 

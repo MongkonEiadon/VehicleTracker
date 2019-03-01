@@ -19,13 +19,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Swashbuckle.AspNetCore.Swagger;
 
-using Vehicle.ReadStore;
-using Vehicle.ReadStore.Module;
+using Customer.ReadStore;
+using Customer.ReadStore.Module;
 
 using VehicleTracker.Infrastructure;
 using VehicleTracker.Module;
 
-namespace Vehicle.Service {
+namespace Customer.Service {
     public class Startup {
         private readonly IConfiguration _configuration;
 
@@ -47,14 +47,14 @@ namespace Vehicle.Service {
             });
 
             services.AddSingleton(middlewareConfig)
-                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Vehicle API", Version = "v1"}));
+                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Customer API", Version = "v1"}));
 
             return EventFlowOptions.New
                 .UseServiceCollection(services)
                 .AddAspNetCoreMetadataProviders()
                 .UseConsoleLog()
                 .RegisterModule<DomainModule>()
-                .RegisterModule<VehicleReadStoreModule>()
+                .RegisterModule<CustomerReadStoreModule>()
                 .RegisterModule<EventSourcingModule>()
                 .CreateServiceProvider();
         }
@@ -65,7 +65,7 @@ namespace Vehicle.Service {
             // initialize InfoDbContext
             using (var scope = app.ApplicationServices.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetService<IDbContextProvider<VehicleContext>>();
+                var dbContext = scope.ServiceProvider.GetService<IDbContextProvider<CustomerContext>>();
                 dbContext.CreateContext();
             }
         

@@ -5,4 +5,5 @@ namespace VehicleTracker.Business.CustomerDomain {
         public CustomerId(string value) : base(value) {
         }
     }
+
 }

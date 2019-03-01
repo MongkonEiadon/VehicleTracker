@@ -15,7 +15,7 @@ namespace VehicleTracker.Business.VehicleDomain {
         #region MyRegion
 
         public void CreateVehicle(VehicleEntity vehicle) {
-            Emit(new CreateVehicleEvent(vehicle));
+            Emit(new VehicleCreatedEvent(vehicle));
         }
 
         #endregion
