@@ -6,5 +6,7 @@
 
         public const string EventDbConnection = "ES_CONNECTION";
         public const string DbConnection = "DB_CONNECTION";
+        public const string DistributedCache = "DISTRIBUTED_CACHE";
+
     }
 }

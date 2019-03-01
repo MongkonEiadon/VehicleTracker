@@ -40,7 +40,8 @@ namespace Vehicle.Service {
 
             var middlewareConfig = new ServiceConfiguration().Create(new Dictionary<string, string> {
                 {nameof(ServiceConfiguration.EventDbConnection), _configuration.GetValue<string>(Identifiers.EventDbConnection)},
-                {nameof(ServiceConfiguration.DbConnection), _configuration.GetValue<string>(Identifiers.DbConnection)}
+                {nameof(ServiceConfiguration.DbConnection), _configuration.GetValue<string>(Identifiers.DbConnection)},
+                {nameof(ServiceConfiguration.DistributedCache), _configuration.GetValue<string>(Identifiers.DistributedCache) }
             });
 
             services.AddSingleton(middlewareConfig)

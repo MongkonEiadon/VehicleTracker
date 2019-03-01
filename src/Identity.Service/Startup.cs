@@ -20,7 +20,8 @@ namespace Identity.Service
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddIdentityServer()
+            services
+                .AddIdentityServer()
                 .AddOperationalStore(options => {
                     options.RedisConnectionString = "";
                     options.KeyPrefix = "prefix";
