@@ -6,6 +6,7 @@ WORKDIR /src
 COPY ["EventStore.Middleware/EventStore.Middleware.csproj", "EventStore.Middleware/"]
 COPY ["VehicleTracker/VehicleTracker.csproj", "VehicleTracker/"]
 COPY ["EventStore/EventStore.csproj", "EventStore/"]
+COPY ["VehicleTracker.Infrastructure/VehicleTracker.Infrastructure.csproj", "VehicleTracker.Infrastructure/"]
 RUN dotnet restore "EventStore.Middleware/EventStore.Middleware.csproj"
 COPY . .
 WORKDIR "/src/EventStore.Middleware"

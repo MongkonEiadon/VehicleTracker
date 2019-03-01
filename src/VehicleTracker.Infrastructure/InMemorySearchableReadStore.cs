@@ -7,8 +7,6 @@ using EventFlow.Logs;
 using EventFlow.ReadStores;
 using EventFlow.ReadStores.InMemory;
 
-using VehicleTracker.Application;
-
 namespace VehicleTracker.Infrastructure {
     public class InMemorySearchableReadStore<TReadModel> : InMemoryReadStore<TReadModel>,
         ISearchableReadModelStore<TReadModel>

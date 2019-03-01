@@ -11,8 +11,6 @@ using EventFlow.ReadStores;
 
 using Microsoft.EntityFrameworkCore;
 
-using VehicleTracker.Application;
-
 namespace VehicleTracker.Infrastructure {
     public class EfSearchableReadStore<TReadModel, TDbContext> :
         ISearchableReadModelStore<TReadModel>

@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VehicleTracker.Infrastructure\VehicleTracker.Infrastructure.csproj" />
     <ProjectReference Include="..\VehicleTracker\VehicleTracker.csproj" />
   </ItemGroup>
 

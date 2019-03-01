@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityService", "Identity
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Service", "Identity.Service\Identity.Service.csproj", "{E1C1531B-9511-48EE-B8EB-69BC58105D56}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleTracker.Redis", "VehicleTracker.Redis\VehicleTracker.Redis.csproj", "{B61FF8DA-D8FB-4931-9205-5BB70B7BD7F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehicleTracker.Infrastructure", "VehicleTracker.Infrastructure\VehicleTracker.Infrastructure.csproj", "{A65BE135-99EF-411E-AB9B-4E8C2974D1FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +59,10 @@ Global
 		{E1C1531B-9511-48EE-B8EB-69BC58105D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1C1531B-9511-48EE-B8EB-69BC58105D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1C1531B-9511-48EE-B8EB-69BC58105D56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B61FF8DA-D8FB-4931-9205-5BB70B7BD7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B61FF8DA-D8FB-4931-9205-5BB70B7BD7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B61FF8DA-D8FB-4931-9205-5BB70B7BD7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B61FF8DA-D8FB-4931-9205-5BB70B7BD7F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A65BE135-99EF-411E-AB9B-4E8C2974D1FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A65BE135-99EF-411E-AB9B-4E8C2974D1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A65BE135-99EF-411E-AB9B-4E8C2974D1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A65BE135-99EF-411E-AB9B-4E8C2974D1FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
