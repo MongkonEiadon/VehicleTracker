@@ -45,7 +45,7 @@ namespace Vehicle.Service.Controllers {
 
             await _vehicleCommandService.CreateNewVehicleAsync(vehicle, cancellationToken);
 
-            return Ok();
+            return Ok(vehicle);
         }
     }
 }

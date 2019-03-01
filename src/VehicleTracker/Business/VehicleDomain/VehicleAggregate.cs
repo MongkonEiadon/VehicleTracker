@@ -1,4 +1,5 @@
 ﻿using EventFlow.Aggregates;
+using EventFlow.Aggregates.ExecutionResults;
 
 using VehicleTracker.Business.VehicleDomain.Events;
 
@@ -14,8 +15,10 @@ namespace VehicleTracker.Business.VehicleDomain {
 
         #region MyRegion
 
-        public void CreateVehicle(VehicleEntity vehicle) {
+        public IExecutionResult CreateVehicle(VehicleEntity vehicle) {
             Emit(new VehicleCreatedEvent(vehicle));
+
+            return ExecutionResult.Success();
         }
 
         #endregion

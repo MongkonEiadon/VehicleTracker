@@ -5,28 +5,30 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using EventFlow.Aggregates;
+using EventFlow.Aggregates.ExecutionResults;
 using EventFlow.Commands;
 
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace VehicleTracker.Business.VehicleDomain.Commands
 {
-    public class RegisterVehicleCommand : Command<VehicleAggregate, VehicleId> {
+    public class RegisterVehicleCommand : Command<VehicleAggregate, VehicleId, IExecutionResult> {
         public VehicleEntity VehicleEntity { get; }
 
-        public RegisterVehicleCommand(VehicleEntity vehicleEntity) : base(VehicleId.New) {
+        public RegisterVehicleCommand(VehicleEntity vehicleEntity) : base(vehicleEntity.Id) {
             VehicleEntity = vehicleEntity;
         }
     }
 
-    internal class RegisterVehicleCommandHandler : CommandHandler<VehicleAggregate, VehicleId, RegisterVehicleCommand> {
+    internal class RegisterVehicleCommandHandler : CommandHandler<VehicleAggregate, VehicleId, IExecutionResult, RegisterVehicleCommand>
+    {
 
+        public override Task<IExecutionResult> ExecuteCommandAsync(VehicleAggregate aggregate, RegisterVehicleCommand command,
+            CancellationToken cancellationToken)
+        {
+            var result = aggregate.CreateVehicle(command.VehicleEntity);
 
-        public override Task ExecuteAsync(VehicleAggregate aggregate, RegisterVehicleCommand command, CancellationToken cancellationToken) {
-
-            aggregate.CreateVehicle(command.VehicleEntity);
-
-            return Task.CompletedTask;
+            return Task.FromResult(result);
         }
+
     }
 }
