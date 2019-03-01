@@ -28,8 +28,7 @@ namespace EventStore.Middleware {
         public IServiceProvider ConfigureServices(IServiceCollection services) {
             var middlewareConfig = new ServiceConfiguration().Create(new Dictionary<string, string> {
                 {
-                    nameof(ServiceConfiguration.EventDbConnection),
-                    _configuration.GetValue<string>(Identifiers.EventDbConnection)
+                    nameof(ServiceConfiguration.EventDbConnection), _configuration.GetValue<string>(Identifiers.EventDbConnection)
                 }
             });
 
