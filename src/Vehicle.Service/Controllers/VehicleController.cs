@@ -47,5 +47,13 @@ namespace Vehicle.Service.Controllers {
 
             return Ok(vehicle);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateLocation(Guid vehicleId, double latitude, double longitude, double zindex, CancellationToken ctx) {
+
+            await _vehicleCommandService.UpdateVehicleLocationAsync(VehicleId.With(vehicleId), latitude, longitude, zindex, ctx);
+
+            return Ok("updated");
+        }
     }
 }

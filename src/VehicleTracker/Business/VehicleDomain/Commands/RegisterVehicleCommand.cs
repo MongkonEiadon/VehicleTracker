@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using EventFlow.Aggregates;
 using EventFlow.Aggregates.ExecutionResults;
 using EventFlow.Commands;
-
+using EventFlow.Core;
 
 namespace VehicleTracker.Business.VehicleDomain.Commands
 {
@@ -31,4 +31,5 @@ namespace VehicleTracker.Business.VehicleDomain.Commands
         }
 
     }
+
 }

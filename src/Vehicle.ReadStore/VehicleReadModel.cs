@@ -6,6 +6,7 @@ using EventFlow.ReadStores;
 
 using VehicleTracker.Business.VehicleDomain;
 using VehicleTracker.Business.VehicleDomain.Events;
+using VehicleTracker.Module;
 
 namespace Vehicle.ReadStore {
     public class VehicleReadModel : IReadModel,
@@ -35,4 +36,5 @@ namespace Vehicle.ReadStore {
             };
         }
     }
+
 }

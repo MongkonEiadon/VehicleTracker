@@ -18,12 +18,15 @@ namespace Vehicle.ReadStore.Module {
                 .AddDefaults(typeof(VehicleReadStoreModule).Assembly)
                 .AddDbContextProvider<VehicleContext, VehicleContextProvider>()
                 .UseEntityFrameworkEventStore<VehicleContext>()
+                //update read models
                 .UseEntityFrameworkReadModel<VehicleReadModel, VehicleContext>()
+                .UseEntityFrameworkReadModel<LocationReadModel, VehicleContext>()
+
                 .RegisterServices(s => {
                     s.Register<IVehicleCommandService, VehicleCommandService>();
                     s.Register<IVehicleQueryService, VehicleQueryService>();
-                    s.Register<ISearchableReadModelStore<VehicleReadModel>,
-                        EfSearchableReadStore<VehicleReadModel, VehicleContext>>();
+                    s.Register<ISearchableReadModelStore<VehicleReadModel>, EfSearchableReadStore<VehicleReadModel, VehicleContext>>();
+                    s.Register<ISearchableReadModelStore<LocationReadModel>, EfSearchableReadStore<LocationReadModel, VehicleContext>>();
                 });
         }
     }

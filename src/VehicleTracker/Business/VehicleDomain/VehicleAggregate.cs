@@ -17,9 +17,15 @@ namespace VehicleTracker.Business.VehicleDomain {
 
         public IExecutionResult CreateVehicle(VehicleEntity vehicle) {
             Emit(new VehicleCreatedEvent(vehicle));
-
             return ExecutionResult.Success();
         }
+
+        public IExecutionResult UpdateVehicleLocation(double latitude, double longitude, double zIndex) {
+            Emit(new LocationUpdatedEvent(latitude, longitude, zIndex));
+            return ExecutionResult.Success();
+        }
+
+        
 
         #endregion
     }

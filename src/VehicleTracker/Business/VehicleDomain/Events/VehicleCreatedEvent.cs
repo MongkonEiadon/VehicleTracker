@@ -8,4 +8,5 @@ namespace VehicleTracker.Business.VehicleDomain.Events {
             Vehicle = vehicle;
         }
     }
+
 }

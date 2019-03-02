@@ -18,5 +18,10 @@ namespace Vehicle.ReadStore.Services {
 
             await _commandBus.PublishAsync(new RegisterVehicleCommand(vehicleEntity), ctx);
         }
+
+        public async Task UpdateVehicleLocationAsync(VehicleId id, double latitude, double longitude, double zindex, CancellationToken ctx) {
+            await _commandBus.PublishAsync(new UpdateVehicleLocationCommand(id, latitude, longitude, zindex), ctx);
+        }
+
     }
 }
