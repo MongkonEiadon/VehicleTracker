@@ -3,6 +3,14 @@ Vehicle Tracking sample microservice designed by CQRS Architechture, and ES (Eve
 
 [![Build Status](https://dev.azure.com/mongkoneiadon/VehicleTracker/_apis/build/status/MongkonEiadon.VehicleTracker?branchName=master)](https://dev.azure.com/mongkoneiadon/VehicleTracker/_build/latest?definitionId=2&branchName=master)
 
+# Introduction
+This is example for running various microservice in case of Vehicle Tracking. The plateform ran on .NET Core framework with Linux compatible. And designed along the dockerize concept with convenince way to use. And the core concept of CQRS that brought up by [EventFlow](https://github.com/eventflow/EventFlow) that I spent a lot of time to learning it. 
+
+
+## The Architecture
+I'm not know well about Microservices concept, while you can help me to make it better way, however when I've look back to the starting.. It's very painful to re-thinking what CQRS is, 
+![OverallArchitecture](https://github.com/MongkonEiadon/VehicleTracker/blob/master/img/architecture.PNG)
+
 
 ## How to up the services
 Now every services setting up on docker compose file, you can easier run it by simple steps;
@@ -14,5 +22,5 @@ $ docker-compose up
 ```
 ## Milestones
 - [x] Get/Delete/Create a Vehicle
+- [x] A Sample for SnapshotStore
 - [ ] A Sample for AggregateSaga
-- [ ] A Sample for SnapshotStore
