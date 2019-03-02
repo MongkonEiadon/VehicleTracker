@@ -24,8 +24,14 @@ $ docker-compose up
 You can have a look exposed endpoint by calling:
 ``` javascript
 
+# -------Tracking API-------
+http://localhost:32771/swagger
+
 # -------Vehicle API-------
-https://localhost:32772/swagger
+http://localhost:32772/swagger
+
+# -------Customer API-------
+http://localhost:32773/swagger
 
 ```
 
