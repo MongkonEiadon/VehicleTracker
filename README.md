@@ -22,5 +22,6 @@ $ docker-compose up
 ```
 ## Milestones
 - [x] Get/Delete/Create a Vehicle
-- [x] A Sample for SnapshotStore
+- [x] Add AgreegateSnapshot
+- [x] Custom readstore called "EFSearchableReadstore"
 - [ ] A Sample for AggregateSaga
