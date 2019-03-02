@@ -25,3 +25,5 @@ $ docker-compose up
 - [x] Add AgreegateSnapshot
 - [x] Custom readstore called "EFSearchableReadstore"
 - [ ] A Sample for AggregateSaga
+- [ ] STS (Secured Token Service) with Redis and IdentityServer4
+- [ ] Implement "ReadStore" instead of using "EntityFramework" to store event sourcing
