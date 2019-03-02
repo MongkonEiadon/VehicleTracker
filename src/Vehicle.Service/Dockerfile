@@ -5,6 +5,7 @@ EXPOSE 80
 FROM microsoft/dotnet:2.2-sdk-stretch AS build
 WORKDIR /src
 COPY ["Vehicle.Service/Vehicle.Service.csproj", "Vehicle.Service/"]
+COPY ["VehicleTracker.Infrastructure/VehicleTracker.Infrastructure.csproj", "VehicleTracker.Infrastructure/"]
 COPY ["VehicleTracker/VehicleTracker.csproj", "VehicleTracker/"]
 COPY ["EventStore/EventStore.csproj", "EventStore/"]
 COPY ["Vehicle.ReadStore/Vehicle.ReadStore.csproj", "Vehicle.ReadStore/"]
