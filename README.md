@@ -27,3 +27,4 @@ $ docker-compose up
 - [ ] A Sample for AggregateSaga
 - [ ] STS (Secured Token Service) with Redis and IdentityServer4
 - [ ] Implement "ReadStore" instead of using "EntityFramework" to store event sourcing
+- [ ] Integrate with GoogleMap API to send near place location name
