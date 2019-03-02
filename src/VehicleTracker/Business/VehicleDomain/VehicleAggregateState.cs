@@ -8,13 +8,14 @@ using VehicleTracker.Business.VehicleDomain.Events;
 
 namespace VehicleTracker.Business.VehicleDomain {
 
+    [Serializable]
     public class VehicleAggregateState : AggregateState<VehicleAggregate, VehicleId, VehicleAggregateState>,
         IApply<VehicleCreatedEvent>,
         IApply<LocationUpdatedEvent> {
 
-        public VehicleEntity Entity { get; private set; }
+        public VehicleEntity Entity { get; set; }
 
-        public ICollection<LocationEntity> Locations { get; set; } = new Collection<LocationEntity>();
+        public List<LocationEntity> Locations { get; set; } = new List<LocationEntity>();
 
 
         public void Apply(VehicleCreatedEvent aggregateCreatedEvent) {
@@ -22,8 +23,18 @@ namespace VehicleTracker.Business.VehicleDomain {
         }
 
         public void Apply(LocationUpdatedEvent e) {
-            Locations.Add(new LocationEntity(e.Latitude, e.Longitude, e.ZIndex));
+            Locations.Add(new LocationEntity() {
+                Longitude = e.Longitude,
+                Latitude = e.Latitude,
+                Zindex = e.ZIndex,
+                TimeStamp = e.TimeStamp
+            });
         }
 
+
+        public void LoadSnapshot(VehicleSnapshot snapshot) {
+            Entity = snapshot.VehicleState.Entity;
+            Locations.AddRange(snapshot.VehicleState.Locations);
+        }
     }
 }

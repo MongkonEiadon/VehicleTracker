@@ -32,8 +32,7 @@ namespace Vehicle.Service.Controllers {
                 return BadRequest(nameof(NullReferenceException));
 
 
-            var result =
-                await _vehicleQueryService.GetVehicleByIdAsync(VehicleId.With(Guid.Parse(id)), cancellationToken);
+            var result = await _vehicleQueryService.GetVehicleByIdAsync(VehicleId.With(Guid.Parse(id)), cancellationToken);
             return new JsonResult(result);
         }
 
@@ -46,14 +45,6 @@ namespace Vehicle.Service.Controllers {
             await _vehicleCommandService.CreateNewVehicleAsync(vehicle, cancellationToken);
 
             return Ok(vehicle);
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateLocation(Guid vehicleId, double latitude, double longitude, double zindex, CancellationToken ctx) {
-
-            await _vehicleCommandService.UpdateVehicleLocationAsync(VehicleId.With(vehicleId), latitude, longitude, zindex, ctx);
-
-            return Ok("updated");
         }
     }
 }

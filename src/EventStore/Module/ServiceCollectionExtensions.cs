@@ -11,7 +11,8 @@ namespace EventStore.Module {
                 .ConfigureEntityFramework(EntityFrameworkConfiguration.New)
                 .AddDefaults(typeof(EventSourcingModule).Assembly)
                 .AddDbContextProvider<EventSourcingDbContext, EventSourcingDbContextProvider>()
-                .UseEntityFrameworkEventStore<EventSourcingDbContext>();
+                .UseEntityFrameworkEventStore<EventSourcingDbContext>()
+                .UseEntityFrameworkSnapshotStore<EventSourcingDbContext>();
         }
     }
 }

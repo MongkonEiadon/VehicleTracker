@@ -16,9 +16,5 @@ namespace EventStore {
                 .AddEventFlowSnapshots();
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("User ID=sa;Password=Pass@word;server=localhost,5553;Database=EventStore;Pooling=true;");
-        //}
     }
 }

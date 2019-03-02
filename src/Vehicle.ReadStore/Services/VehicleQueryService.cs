@@ -20,5 +20,6 @@ namespace Vehicle.ReadStore.Services {
 
             return result?.ToVehicle();
         }
+
     }
 }

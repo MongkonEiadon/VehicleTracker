@@ -1,4 +1,6 @@
-﻿using EventFlow.Aggregates;
+﻿using System;
+
+using EventFlow.Aggregates;
 
 namespace VehicleTracker.Business.VehicleDomain.Events {
 
@@ -8,10 +10,13 @@ namespace VehicleTracker.Business.VehicleDomain.Events {
         public double Longitude { get; }
         public double ZIndex { get; }
 
-        public LocationUpdatedEvent(double latitude, double longitude, double zindex) {
+        public DateTimeOffset TimeStamp { get; set; }
+
+        public LocationUpdatedEvent(double latitude, double longitude, double zindex, DateTimeOffset timeStamp) {
             Latitude = latitude;
             Longitude = longitude;
             ZIndex = zindex;
+            TimeStamp = timeStamp;
         }
 
     }

@@ -8,6 +8,5 @@ namespace Vehicle.ReadStore {
 
         public DbSet<VehicleReadModel> Vehicles { get; set; }
 
-        public DbSet<LocationReadModel> Locations { get; set; }
     }
 }

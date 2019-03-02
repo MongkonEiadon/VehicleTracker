@@ -1,4 +1,7 @@
-﻿using EventFlow.Entities;
+﻿using System;
+
+using EventFlow.Entities;
+using EventFlow.ValueObjects;
 
 namespace VehicleTracker.Business.VehicleDomain {
     public class VehicleEntity : Entity<VehicleId> {
@@ -10,18 +13,14 @@ namespace VehicleTracker.Business.VehicleDomain {
         public string Country { get; set; }
     }
 
-    public class LocationEntity  {
+    public class LocationEntity {
 
-        public double Latitude { get; }
-        public double Longitude { get; }
-        public double Zindex { get; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Zindex { get; set; }
+        public DateTimeOffset TimeStamp { get; set; }
 
-
-        public LocationEntity(double latitude, double longitude, double zindex) {
-            Latitude = latitude;
-            Longitude = longitude;
-            Zindex = zindex;
-        }
 
     }
+
 }
