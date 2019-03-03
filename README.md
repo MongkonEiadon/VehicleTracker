@@ -44,6 +44,7 @@ This is example of event sourcing metadata
 - [x] Get/Delete/Create a Vehicle
 - [x] Add AgreegateSnapshot
 - [x] Custom readstore called "EFSearchableReadstore"
+- [ ] Complete API Gateway with Ocelot
 - [ ] A Sample for AggregateSaga
 - [ ] STS (Secured Token Service) with Redis and IdentityServer4
 - [ ] Implement "ReadStore" instead of using "EntityFramework" to store event sourcing
