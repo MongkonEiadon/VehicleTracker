@@ -1,0 +1,27 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authorize",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/{everything}",
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "vehicle",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/vehicle/{everthing}",
+    }
+  ],
+  "GlobalConfiguration": {}
+}

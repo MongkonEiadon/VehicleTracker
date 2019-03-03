@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,13 +32,13 @@ namespace Tracking.Service.Controllers {
             return new JsonResult(result);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> UpdateLocation(Guid vehicleId, double latitude, double longitude, double zindex, CancellationToken ctx) {
 
             await _trackingCommandService.StoreVehicleLocationAsync(vehicleId, latitude, longitude, zindex, ctx);
             return Ok($"Store new location for vehicle id {vehicleId} completed");
         }
-
-
     }
+
 }

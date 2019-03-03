@@ -8,6 +8,7 @@ using EventFlow.Queries;
 using Tracking.ReadStore.ReadModels;
 
 using VehicleTracker.Application.QueryServices;
+using VehicleTracker.Business.TrackingDomain.Query;
 using VehicleTracker.Business.VehicleDomain;
 
 namespace Tracking.ReadStore.Services
@@ -28,6 +29,9 @@ namespace Tracking.ReadStore.Services
             return result?.ToLocation();
         }
 
+        public Task<IEnumerable<LocationEntity>> GetLocationHistoryAsync(VehicleId id, CancellationToken ctx) {
+            return _queryProcessor.ProcessAsync(new LocationHistoryQuery(id), ctx);
+        }
     }
 
 }

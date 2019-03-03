@@ -1,6 +1,7 @@
 version: '3.4'
 
 services:
+
   eventstore:
     image: eventstore
     build:
@@ -66,6 +67,37 @@ services:
     ports:
     - 32773:80
 
+  authorize:
+    image: authorize
+    build:
+      context: .
+      dockerfile: Authorize.Service/Dockerfile
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
+    - IDENTITY_CONNECTION=Server=database_sql;Database=authorize;User Id=sa;Password=Pass@word
+    - DISTRIBUTED_CACHE=distributed_cache
+    depends_on:
+    - database_sql  
+    - eventstore
+    - distributed_cache
+    ports:
+    - 32774:80
+
+  ocelotgateway:
+    image: ocelotgateway
+    build:
+      context: .
+      dockerfile: VehicleTracker.Gateway/Dockerfile
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+    - tracking
+    - vehicle
+    - customer
+    - authorize
+    ports:
+    - 6543:80
 
   distributed_cache:
     image: redis

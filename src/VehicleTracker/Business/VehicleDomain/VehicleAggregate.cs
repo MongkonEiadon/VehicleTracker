@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,6 +31,12 @@ namespace VehicleTracker.Business.VehicleDomain {
         public IExecutionResult UpdateVehicleLocation(double latitude, double longitude, double zIndex) {
             Emit(new LocationUpdatedEvent(latitude, longitude, zIndex, DateTimeOffset.Now));
             return ExecutionResult.Success();
+        }
+
+
+        public IEnumerable<LocationEntity> GetLocationHistory() {
+
+            return _vehicleAggregateState.Locations;
         }
 
         

@@ -12,5 +12,7 @@ namespace VehicleTracker.Application.QueryServices
 
         Task<LocationEntity> GetCurrentVehicleLocationAsync(VehicleId id, CancellationToken ctx);
 
+        Task<IEnumerable<LocationEntity>> GetLocationHistoryAsync(VehicleId id, CancellationToken ctx);
+
     }
 }

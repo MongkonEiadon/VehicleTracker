@@ -5,6 +5,7 @@ namespace VehicleTracker.Infrastructure {
         public string EventDbConnection { get; protected set; }
         public string DbConnection { get; protected set; }
         public string DistributedCache { get; protected set; }
+        public string IdentityConnection { get; protected set; }
 
         public abstract MiddlewareConfiguration Create(IDictionary<string, string> configurations);
     }
