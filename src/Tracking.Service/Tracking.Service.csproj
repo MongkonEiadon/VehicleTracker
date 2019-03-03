@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EventStore\EventStore.csproj" />
     <ProjectReference Include="..\Tracking.ReadStore\Tracking.ReadStore.csproj" />
+    <ProjectReference Include="..\VehicleTracker.Infrastructure.Identity\VehicleTracker.Infrastructure.Identity.csproj" />
     <ProjectReference Include="..\VehicleTracker.Infrastructure\VehicleTracker.Infrastructure.csproj" />
     <ProjectReference Include="..\VehicleTracker\VehicleTracker.csproj" />
   </ItemGroup>

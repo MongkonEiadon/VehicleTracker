@@ -32,7 +32,6 @@ namespace Tracking.Service.Controllers {
             return new JsonResult(result);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> UpdateLocation(Guid vehicleId, double latitude, double longitude, double zindex, CancellationToken ctx) {
 
