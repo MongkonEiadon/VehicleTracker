@@ -1,7 +1,10 @@
 # Vehicle Tracker Application (Microservice)
 Vehicle Tracking sample microservice designed by CQRS Architechture, and ES (Event Sourcing) based on [EventFlow](https://github.com/eventflow/EventFlow), and .NET Core framework on the EntityFramework with SQL Server also Dockerize Linux supported
 
+
+
 [![Build Status](https://dev.azure.com/mongkoneiadon/VehicleTracker/_apis/build/status/MongkonEiadon.VehicleTracker?branchName=master)](https://dev.azure.com/mongkoneiadon/VehicleTracker/_build/latest?definitionId=2&branchName=master)
+
 
 # Introduction
 This is example for running various microservice in case of Vehicle Tracking. The plateform ran on .NET Core framework with Linux compatible. And designed along the dockerize concept with convenince way to use. And the core concept of CQRS that brought up by [EventFlow](https://github.com/eventflow/EventFlow) that I spent a lot of time to learning it. 
@@ -43,3 +46,7 @@ This is example of event sourcing metadata
 - [ ] STS (Secured Token Service) with Redis and IdentityServer4
 - [ ] Implement "[EventStore](https://eventstore.org/)" instead of using "EntityFramework" to store event sourcing
 - [ ] Integrate with GoogleMap API to send near place location name
+
+# Support Me
+If you've got value from any of the content which I have created, but pull requests are not your thing, then I would also very much appreciate your support by buying me a coffee.
+<a href="https://www.buymeacoffee.com/6VF3XHb" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/black_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
