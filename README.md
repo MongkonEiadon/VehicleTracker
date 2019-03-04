@@ -41,5 +41,5 @@ This is example of event sourcing metadata
 - [ ] Complete API Gateway with Ocelot
 - [ ] A Sample for AggregateSaga
 - [ ] STS (Secured Token Service) with Redis and IdentityServer4
-- [ ] Implement "ReadStore" instead of using "EntityFramework" to store event sourcing
+- [ ] Implement "[EventStore](https://eventstore.org/)" instead of using "EntityFramework" to store event sourcing
 - [ ] Integrate with GoogleMap API to send near place location name
