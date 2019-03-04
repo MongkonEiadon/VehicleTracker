@@ -11,7 +11,7 @@ using VehicleTracker.Business.VehicleDomain;
 
 namespace Tracking.Service.Controllers {
 
-    [Route("api/v1/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LocationsController : Controller {
 

@@ -9,8 +9,21 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/{everything}",
+      "UpstreamPathTemplate": "/{everything}"
     },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "tracking",
+          "Port": 80
+        }
+      ],
+      "SwaggerKey": "tracking",
+      "UpstreamPathTemplate": "/api/v1/tracking/{everything}"
+    },
+
     {
       "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
@@ -20,8 +33,30 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/vehicle/{everthing}",
+      "SwaggerKey": "vehicle",
+      "UpstreamPathTemplate": "/api/v1/vehicle/{everything}"
     }
   ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "tracking",
+      "Config": [
+        {
+          "Name": "Tracking API",
+          "Version": "v1",
+          "Url": "http://tracking/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "vehicle",
+      "Config": [
+        {
+          "Name": "Vehicle API",
+          "Version": "v1",
+          "Url": "http://vehicle/swagger/v1/swagger.json"
+        }
+      ]
+    }], 
   "GlobalConfiguration": {}
 }

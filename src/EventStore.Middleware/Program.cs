@@ -26,7 +26,7 @@ namespace EventStore.Middleware {
                 var host = builder.Build();
                 host.Run();
             }
-            catch (Exception ex) {
+            catch (Exception) {
             }
             finally {
                 Console.WriteLine("Event store is UP now!!");

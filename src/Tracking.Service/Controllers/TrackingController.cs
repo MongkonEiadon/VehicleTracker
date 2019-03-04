@@ -12,7 +12,7 @@ using VehicleTracker.Application.QueryServices;
 using VehicleTracker.Business.VehicleDomain;
 
 namespace Tracking.Service.Controllers {
-    [Route("api/v1/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TrackingController : Controller {
         private readonly IMapper _mapper;

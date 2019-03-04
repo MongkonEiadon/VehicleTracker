@@ -12,8 +12,6 @@ services:
     - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
     depends_on:
     - database_sql
-    ports:
-    - 32770:80
 
   tracking:
     image: tracking
@@ -29,8 +27,6 @@ services:
     - database_sql  
     - eventstore
     - distributed_cache
-    ports:
-    - 32771:80
 
     
   vehicle:
@@ -47,8 +43,6 @@ services:
     - database_sql  
     - eventstore
     - distributed_cache
-    ports:
-    - 32772:80
 
   customer:
     image: customer
@@ -64,8 +58,6 @@ services:
     - database_sql  
     - eventstore
     - distributed_cache
-    ports:
-    - 32773:80
 
   authorize:
     image: authorize
