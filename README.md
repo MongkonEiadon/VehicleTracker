@@ -24,14 +24,8 @@ $ docker-compose up
 You can have a look exposed endpoint by calling:
 ``` javascript
 
-# -------Tracking API-------
-http://localhost:32771/swagger
-
-# -------Vehicle API-------
-http://localhost:32772/swagger
-
-# -------Customer API-------
-http://localhost:32773/swagger
+# -------Exposed API with Ocelot-------
+http://localhost:6543/swagger
 
 ```
 ![EventSourcingMetadata](https://github.com/MongkonEiadon/VehicleTracker/blob/master/img/vehicle-swagger.PNG)
