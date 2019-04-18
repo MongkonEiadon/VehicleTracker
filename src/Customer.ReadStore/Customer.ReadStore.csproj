@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="eventflow.entityframework" Version="0.69.3772" />
+    <PackageReference Include="eventflow.entityframework" Version="0.71.3834" />
   </ItemGroup>
 
   <ItemGroup>

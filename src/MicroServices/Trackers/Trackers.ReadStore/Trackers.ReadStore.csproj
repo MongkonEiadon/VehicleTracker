@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="eventflow.entityframework" Version="0.71.3834" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructures\EventStore.Middleware\EventStore.Middleware.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructures\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

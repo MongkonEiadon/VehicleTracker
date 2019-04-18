@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="eventflow" Version="0.71.3834" />
+    <PackageReference Include="Eventflow.Entityframework" Version="0.71.3834" />
+  </ItemGroup>
+
+</Project>

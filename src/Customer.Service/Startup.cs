@@ -23,6 +23,7 @@ using Customer.ReadStore;
 using Customer.ReadStore.Module;
 
 using VehicleTracker.Infrastructure;
+using VehicleTracker.Infrastructure.Configurations;
 using VehicleTracker.Module;
 
 namespace Customer.Service {
@@ -40,13 +41,7 @@ namespace Customer.Service {
 
             services.AddAutoMapper();
 
-            var middlewareConfig = new ServiceConfiguration().Create(new Dictionary<string, string> {
-                {nameof(ServiceConfiguration.EventDbConnection), _configuration.GetValue<string>(Identifiers.EventDbConnection)},
-                {nameof(ServiceConfiguration.DbConnection), _configuration.GetValue<string>(Identifiers.DbConnection)},
-                {nameof(ServiceConfiguration.DistributedCache), _configuration.GetValue<string>(Identifiers.DistributedCache) }
-            });
-
-            services.AddSingleton(middlewareConfig)
+            services.AddSingleton(EnvironmentConfiguration.Bind(_configuration))
                 .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Customer API", Version = "v1"}));
 
             return EventFlowOptions.New

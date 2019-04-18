@@ -1,7 +1,4 @@
-﻿
-
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
@@ -36,7 +33,7 @@ namespace Authorize.Service
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             })
-            .AddVehicleAuthorizeService(Configuration)
+            //.AddVehicleAuthorizeService(Configuration)
             .AddMvc()
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

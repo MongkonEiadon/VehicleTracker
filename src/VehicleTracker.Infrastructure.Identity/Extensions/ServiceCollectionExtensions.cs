@@ -7,17 +7,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using VehicleTracker.Infrastructure.Configurations;
+
 namespace VehicleTracker.Infrastructure.Identity.Extensions
 {
     public static class ServiceCollectionExtensions
     {
 
-        public static IServiceCollection AddVehicleAuthorizeService(this IServiceCollection services, IConfiguration config) {
+        public static IServiceCollection AddVehicleAuthorizeService(this IServiceCollection services, EnvironmentConfiguration config) {
 
-            var identityConnection = config.GetValue<string>(Identifiers.IdentityConnection);
 
             services
-                .AddDbContext<VehicleIdentityDbContext>(options => options.UseSqlServer(identityConnection));
+                .AddDbContext<VehicleIdentityDbContext>(options => options.UseSqlServer(config.DbConnection));
 
             services
                 .AddIdentity<IdentityUser, IdentityRole>()

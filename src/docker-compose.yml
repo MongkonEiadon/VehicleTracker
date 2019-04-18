@@ -23,10 +23,12 @@ services:
     - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
     - DB_CONNECTION=Server=database_sql;Database=tracking;User Id=sa;Password=Pass@word
     - DISTRIBUTED_CACHE=distributed_cache
+    - RABBIT_CONNECTION=amqp://test:test@rabbitmq:5672
     depends_on:
     - database_sql  
     - eventstore
     - distributed_cache
+    - rabbitmq
 
     
   vehicle:
@@ -39,10 +41,12 @@ services:
     - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
     - DB_CONNECTION=Server=database_sql;Database=vehicle;User Id=sa;Password=Pass@word
     - DISTRIBUTED_CACHE=distributed_cache
+    - RABBIT_CONNECTION=amqp://test:test@rabbitmq:5672
     depends_on:
     - database_sql  
     - eventstore
     - distributed_cache
+    - rabbitmq
 
   customer:
     image: customer
@@ -54,10 +58,12 @@ services:
     - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
     - DB_CONNECTION=Server=database_sql;Database=customer;User Id=sa;Password=Pass@word
     - DISTRIBUTED_CACHE=distributed_cache
+    - RABBIT_CONNECTION=amqp://test:test@rabbitmq:5672
     depends_on:
     - database_sql  
     - eventstore
     - distributed_cache
+    - rabbitmq
 
   authorize:
     image: authorize
@@ -73,6 +79,7 @@ services:
     - database_sql  
     - eventstore
     - distributed_cache
+    - rabbitmq
     ports:
     - 32774:80
 
@@ -88,6 +95,7 @@ services:
     - vehicle
     - customer
     - authorize
+    - rabbitmq
     ports:
     - 6543:80
 
@@ -95,6 +103,18 @@ services:
     image: redis
     ports:
     - 5551:6739
+
+  #### RabbitMQ Container ####
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "test"
+      RABBITMQ_DEFAULT_PASS: "test"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+    - 15672:15672
+    - 5672:5672
 
   database_sql:
     image: microsoft/mssql-server-linux:latest
