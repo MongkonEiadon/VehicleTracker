@@ -42,6 +42,10 @@ and we create another sample console application to consume the event (listening
 
 ![EventSourcingMetadata](https://github.com/MongkonEiadon/VehicleTracker/blob/master/img/consume_event.png)
 
+you can check the connections with rabbitmq management tools by go to (http://localhost:15672/#/) with test/test login/password here
+
+![EventSourcingMetadata](https://github.com/MongkonEiadon/VehicleTracker/blob/master/img/rabbitmq_connections.PNG)
+
 
 
 
