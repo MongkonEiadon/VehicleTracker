@@ -10,7 +10,7 @@ using EventFlow.ReadStores;
 
 namespace Vehicles.ReadStore {
     public class VehicleReadModel : IReadModel,
-        IAmReadModelFor<VehicleAggregate, VehicleId, VehicleRegisteredEvent> {
+        IAmReadModelFor<VehicleAggregate, VehicleId, VehicleRegisterCompleted> {
         [Key] [Column("Id")] public virtual string AggregateId { get; set; }
 
         public virtual string LicensePlateNumber { get; set; }
@@ -18,9 +18,9 @@ namespace Vehicles.ReadStore {
         public virtual string Country { get; set; }
 
         public void Apply(IReadModelContext context,
-            IDomainEvent<VehicleAggregate, VehicleId, VehicleRegisteredEvent> domainEvent) {
+            IDomainEvent<VehicleAggregate, VehicleId, VehicleRegisterCompleted> domainEvent) {
 
-            var _vehicle = domainEvent.AggregateEvent.Vehicle;
+            var _vehicle = domainEvent.AggregateEvent.Enitity;
 
             AggregateId = domainEvent.AggregateIdentity.ToString();
             LicensePlateNumber = _vehicle.LicensePlateNumber;
