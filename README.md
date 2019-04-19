@@ -33,6 +33,18 @@ http://localhost:6543/swagger
 ```
 ![EventSourcingMetadata](https://github.com/MongkonEiadon/VehicleTracker/blob/master/img/vehicle-swagger.PNG)
 
+### How Microservices can know each others
+So when every single microservice emitting from them aggregate (aka. VehicleAggregate) them always produce single event and store to EventSourcing by itself. That mean other service didn't know what happend on that service, so we will communicate with RabbitMq following this simple work flow
+
+![EventSourcingMetadata](https://github.com/MongkonEiadon/VehicleTracker/blob/master/img/rabbitmq_howits_works.png)
+
+and we create another sample console application to consume the event (listening the events from queue at rabbitmq), when we publishing the event will be up to the exchange stream in rabbitmq, and we need to bining to the queue that we want to consume, so this is then result when we consume the event from vehicle service with another service
+
+![EventSourcingMetadata](https://github.com/MongkonEiadon/VehicleTracker/blob/master/img/consume_event.png)
+
+
+
+
 ### Example Information
 This is example of event sourcing metadata 
 ![EventSourcingMetadata](https://github.com/MongkonEiadon/VehicleTracker/blob/master/img/eventsourcing-example.PNG)
