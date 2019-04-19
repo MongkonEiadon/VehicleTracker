@@ -23,7 +23,6 @@ namespace Vehicles.ReadStore.Module {
                 .UseEntityFrameworkReadModel<VehicleReadModel, VehicleContext>()
 
                 .RegisterServices(s => {
-                    s.Register<IVehicleCommandService, VehicleCommandService>();
                     s.Register<IVehicleQueryService, VehicleQueryService>();
                     s.Register<ISearchableReadModelStore<VehicleReadModel>, EfSearchableReadStore<VehicleReadModel, VehicleContext>>();
                 });

@@ -5,23 +5,23 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "authorize",
-          "Port": 80
+          "Host": "rabbitmq",
+          "Port": 15672
         }
       ],
-      "UpstreamPathTemplate": "/{everything}"
+      "UpstreamPathTemplate": "/rabbitmq/{everything}"
     },
     {
       "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "tracking",
+          "Host": "trackers",
           "Port": 80
         }
       ],
-      "SwaggerKey": "tracking",
-      "UpstreamPathTemplate": "/api/v1/tracking/{everything}"
+      "SwaggerKey": "trackers",
+      "UpstreamPathTemplate": "/api/v1/trackers/{everything}"
     },
 
     {
@@ -29,32 +29,32 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "vehicle",
+          "Host": "vehicles",
           "Port": 80
         }
       ],
-      "SwaggerKey": "vehicle",
-      "UpstreamPathTemplate": "/api/v1/vehicle/{everything}"
+      "SwaggerKey": "vehicles",
+      "UpstreamPathTemplate": "/api/v1/vehicles/{everything}"
     }
   ],
   "SwaggerEndPoints": [
     {
-      "Key": "tracking",
+      "Key": "trackers",
       "Config": [
         {
-          "Name": "Tracking API",
+          "Name": "Trackers API",
           "Version": "v1",
-          "Url": "http://tracking/swagger/v1/swagger.json"
+          "Url": "http://trackers/swagger/v1/swagger.json"
         }
       ]
     },
     {
-      "Key": "vehicle",
+      "Key": "vehicles",
       "Config": [
         {
-          "Name": "Vehicle API",
+          "Name": "Vehicles API",
           "Version": "v1",
-          "Url": "http://vehicle/swagger/v1/swagger.json"
+          "Url": "http://vehicles/swagger/v1/swagger.json"
         }
       ]
     }], 

@@ -7,22 +7,27 @@ using AutoMapper;
 using Domain.Application.CommandServices;
 using Domain.Application.QueryServices;
 using Domain.Business.Vehicles;
+using Domain.Business.Vehicles.Commands;
+
+using EventFlow;
 
 using Microsoft.AspNetCore.Mvc;
 
 using Vehicles.Service.ViewModels;
 
 namespace Vehicles.Service.Controllers {
-    [Route("[controller]")]
+    [Route("Vehicle")]
     [ApiController]
     public class VehiclesController : Controller {
         private readonly IMapper _mapper;
         private readonly IVehicleQueryService _vehicleQueryService;
-        private readonly IVehicleCommandService _vehicleCommandService;
+        private readonly ICommandBus _commandBus;
 
-        public VehiclesController(IVehicleQueryService vehicleQueryService, IVehicleCommandService vehicleCommandService, IMapper mapper) {
+        public VehiclesController(IVehicleQueryService vehicleQueryService, 
+            
+            ICommandBus commandBus, IMapper mapper) {
             _vehicleQueryService = vehicleQueryService;
-            _vehicleCommandService = vehicleCommandService;
+            _commandBus = commandBus;
             _mapper = mapper;
         }
 
@@ -40,11 +45,15 @@ namespace Vehicles.Service.Controllers {
         [HttpPost]
         public async Task<IActionResult> StoreVehicle(VehicleViewModel vehicleViewModel,
             CancellationToken cancellationToken) {
-            var vehicle = _mapper.Map<VehicleEntity>(vehicleViewModel);
 
-            await _vehicleCommandService.CreateNewVehicleAsync(vehicle, cancellationToken);
 
-            return Ok(vehicle);
+            await _commandBus.PublishAsync(
+                new RegisterVehicleCommand(vehicleViewModel.LicensePlateNumber, vehicleViewModel.Model,
+                    vehicleViewModel.Country),
+                cancellationToken);
+
+
+            return Ok();
         }
     }
 }

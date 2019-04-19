@@ -10,6 +10,8 @@ using EventFlow.AspNetCore.Extensions;
 using EventFlow.DependencyInjection.Extensions;
 using EventFlow.EntityFramework;
 using EventFlow.Extensions;
+using EventFlow.RabbitMQ;
+using EventFlow.RabbitMQ.Extensions;
 
 using EventStore.Middleware.Module;
 
@@ -36,12 +38,14 @@ namespace Vehicles.Service {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services) {
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddAutoMapper();
-            services.AddSingleton(EnvironmentConfiguration.Bind(_configuration))
-                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Vehicles API", Version = "v1"}));
+            var env = EnvironmentConfiguration.Bind(_configuration);
+
+            services.AddAutoMapper()
+                .AddSingleton(env)
+                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Vehicles API", Version = "v1"}))
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             return EventFlowOptions.New
                 .UseServiceCollection(services)
@@ -50,6 +54,7 @@ namespace Vehicles.Service {
                 .RegisterModule<DomainModule>()
                 .RegisterModule<VehicleReadStoreModule>()
                 .RegisterModule<EventSourcingModule>()
+                .PublishToRabbitMq(RabbitMqConfiguration.With(new Uri(env.RabbitMqConnection)))
                 .CreateServiceProvider();
         }
 

@@ -10,7 +10,7 @@ namespace Domain.Business.Vehicles {
 
     [Serializable]
     public class VehicleAggregateState : AggregateState<VehicleAggregate, VehicleId, VehicleAggregateState>,
-        IApply<VehicleCreatedEvent>,
+        IApply<VehicleRegisteredEvent>,
         IApply<LocationUpdatedEvent> {
 
         public VehicleEntity Entity { get; set; }
@@ -18,8 +18,8 @@ namespace Domain.Business.Vehicles {
         public List<LocationEntity> Locations { get; set; } = new List<LocationEntity>();
 
 
-        public void Apply(VehicleCreatedEvent aggregateCreatedEvent) {
-            Entity = aggregateCreatedEvent.Vehicle;
+        public void Apply(VehicleRegisteredEvent aggregateRegisteredEvent) {
+            Entity = aggregateRegisteredEvent.Vehicle;
         }
 
         public void Apply(LocationUpdatedEvent e) {

@@ -6,103 +6,59 @@ services:
     image: eventstore
     build:
       context: .
-      dockerfile: EventStore.Middleware/Dockerfile
+      dockerfile: Apps/EventStore.App/Dockerfile
     environment:
     - ASPNETCORE_ENVIRONMENT=Development
     - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
     depends_on:
     - database_sql
 
-  tracking:
-    image: tracking
+  trackers:
+    image: trackers
     build:
       context: .
-      dockerfile: Tracking.Service/Dockerfile
+      dockerfile: MicroServices/Trackers/Trackers.Service/Dockerfile
     environment:
     - ASPNETCORE_ENVIRONMENT=Development
     - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
-    - DB_CONNECTION=Server=database_sql;Database=tracking;User Id=sa;Password=Pass@word
+    - DB_CONNECTION=Server=database_sql;Database=trackers;User Id=sa;Password=Pass@word
     - DISTRIBUTED_CACHE=distributed_cache
     - RABBIT_CONNECTION=amqp://test:test@rabbitmq:5672
     depends_on:
     - database_sql  
     - eventstore
-    - distributed_cache
     - rabbitmq
 
     
-  vehicle:
-    image: vehicle
+  vehicles:
+    image: vehicles
     build:
       context: .
-      dockerfile: Vehicle.Service/Dockerfile
+      dockerfile: MicroServices/Vehicles/Vehicles.Service/Dockerfile
     environment:
     - ASPNETCORE_ENVIRONMENT=Development
     - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
-    - DB_CONNECTION=Server=database_sql;Database=vehicle;User Id=sa;Password=Pass@word
+    - DB_CONNECTION=Server=database_sql;Database=vehicles;User Id=sa;Password=Pass@word
     - DISTRIBUTED_CACHE=distributed_cache
     - RABBIT_CONNECTION=amqp://test:test@rabbitmq:5672
     depends_on:
     - database_sql  
     - eventstore
-    - distributed_cache
     - rabbitmq
 
-  customer:
-    image: customer
+  servicegateway:
+    image: servicegateway
     build:
       context: .
-      dockerfile: Customer.Service/Dockerfile
-    environment:
-    - ASPNETCORE_ENVIRONMENT=Development
-    - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
-    - DB_CONNECTION=Server=database_sql;Database=customer;User Id=sa;Password=Pass@word
-    - DISTRIBUTED_CACHE=distributed_cache
-    - RABBIT_CONNECTION=amqp://test:test@rabbitmq:5672
-    depends_on:
-    - database_sql  
-    - eventstore
-    - distributed_cache
-    - rabbitmq
-
-  authorize:
-    image: authorize
-    build:
-      context: .
-      dockerfile: Authorize.Service/Dockerfile
-    environment:
-    - ASPNETCORE_ENVIRONMENT=Development
-    - ES_CONNECTION=Server=database_sql;Database=event_sourcing;User Id=sa;Password=Pass@word
-    - IDENTITY_CONNECTION=Server=database_sql;Database=authorize;User Id=sa;Password=Pass@word
-    - DISTRIBUTED_CACHE=distributed_cache
-    depends_on:
-    - database_sql  
-    - eventstore
-    - distributed_cache
-    - rabbitmq
-    ports:
-    - 32774:80
-
-  ocelotgateway:
-    image: ocelotgateway
-    build:
-      context: .
-      dockerfile: VehicleTracker.Gateway/Dockerfile
+      dockerfile: Gateway/ServicesGateway/Dockerfile
     environment:
     - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-    - tracking
-    - vehicle
-    - customer
-    - authorize
+    - trackers
+    - vehicles
     - rabbitmq
     ports:
     - 6543:80
-
-  distributed_cache:
-    image: redis
-    ports:
-    - 5551:6739
 
   #### RabbitMQ Container ####
   rabbitmq:

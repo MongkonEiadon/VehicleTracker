@@ -23,9 +23,20 @@ namespace Domain.Business.Vehicles {
 
         #region MyRegion
 
-        public IExecutionResult CreateVehicle(VehicleEntity vehicle) {
-            Emit(new VehicleCreatedEvent(vehicle));
+        public IExecutionResult RegisterVehicle(string licensePlate, string model, string country) {
+
+            Emit(new VehicleRegisteredEvent(new VehicleEntity(this.Id) {
+                Country = country,
+                LicensePlateNumber = licensePlate,
+                Model = model
+            }));
+
             return ExecutionResult.Success();
+        }
+
+        public void RegisterComplete(VehicleEntity entity) {
+
+            Emit(new VehicleRegisterCompleted(entity));
         }
 
         public IExecutionResult UpdateVehicleLocation(double latitude, double longitude, double zIndex) {

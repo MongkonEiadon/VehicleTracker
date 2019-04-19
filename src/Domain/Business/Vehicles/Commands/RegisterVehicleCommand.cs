@@ -12,20 +12,26 @@ using EventFlow.Core;
 namespace Domain.Business.Vehicles.Commands
 {
     public class RegisterVehicleCommand : Command<VehicleAggregate, VehicleId, IExecutionResult> {
-        public VehicleEntity VehicleEntity { get; }
 
-        public RegisterVehicleCommand(VehicleEntity vehicleEntity) : base(vehicleEntity.Id) {
-            VehicleEntity = vehicleEntity;
+        public string LicensePlate { get; }
+        public string Model { get; }
+        public string Country { get; }
+
+
+        public RegisterVehicleCommand(string licensePlate, string model, string country) : base(VehicleId.New) {
+            LicensePlate = licensePlate;
+            Model = model;
+            Country = country;
         }
+
     }
 
     internal class RegisterVehicleCommandHandler : CommandHandler<VehicleAggregate, VehicleId, IExecutionResult, RegisterVehicleCommand>
     {
 
         public override Task<IExecutionResult> ExecuteCommandAsync(VehicleAggregate aggregate, RegisterVehicleCommand command,
-            CancellationToken cancellationToken)
-        {
-            var result = aggregate.CreateVehicle(command.VehicleEntity);
+            CancellationToken cancellationToken) {
+            var result = aggregate.RegisterVehicle(command.LicensePlate, command.Model, command.Country);
 
             return Task.FromResult(result);
         }
