@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using AutoMapper;
 
 using Domain.Module;
 
@@ -19,11 +16,11 @@ using Infrastructure.Configurations;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 using Vehicles.ReadStore;
 using Vehicles.ReadStore.Module;
@@ -41,15 +38,14 @@ namespace Vehicles.Service {
 
             var env = EnvironmentConfiguration.Bind(_configuration);
 
-            services.AddAutoMapper()
+            services
+                .AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Vehicles API", Version = "v1" }))
                 .AddSingleton(env)
-                .AddSwaggerGen(c => c.SwaggerDoc("v1", new Info {Title = "Vehicles API", Version = "v1"}))
-                .AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .AddMvc(e => e.EnableEndpointRouting = false);
 
             return EventFlowOptions.New
                 .UseServiceCollection(services)
-                .AddAspNetCoreMetadataProviders()
+                .AddAspNetCore()
                 .UseConsoleLog()
                 .RegisterModule<DomainModule>()
                 .RegisterModule<VehicleReadStoreModule>()
@@ -59,15 +55,14 @@ namespace Vehicles.Service {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
 
             // initialize dbContext
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetService<IDbContextProvider<VehicleContext>>();
-                dbContext.CreateContext();
+                dbContext?.CreateContext();
             }
-        
 
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();

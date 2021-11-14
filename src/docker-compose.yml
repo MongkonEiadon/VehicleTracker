@@ -73,7 +73,7 @@ services:
     - 5672:5672
 
   database_sql:
-    image: microsoft/mssql-server-linux:latest
+    image: mcr.microsoft.com/mssql/server
     environment:
     - MSSQL_SA_PASSWORD=Pass@word
     - ACCEPT_EULA=Y
